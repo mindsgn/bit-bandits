@@ -6,12 +6,12 @@ import { keywords } from '@/constants/keywords';
 import {APIProvider} from '@vis.gl/react-google-maps';
 
 export const metadata: Metadata = {
-  title: 'AMAFA.XYZ',
-  applicationName: 'AMAFA.XYZ',
+  title: 'STOKVEL',
+  applicationName: 'STOKVEL',
   authors: [
     {
-      name: 'sibongiseni',
-      url: 'https://sibongiseni.eth'
+      name: 'Sibongiseni',
+      url: 'https://sibongiseni.xyz'
     },
     {
       name: 'Mindsgn Studio',
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
     }
   ],
   description:
-    'Amafa is a modern, open source asset management software that lets you create, manage, assign and overview your assets and equipment. From small office equipment to construction cranes.',
+    'Welcome to Stokvel, where seamless connections and smart investments meet.',
   keywords,
   twitter: {
-    site: 'https://amafa.xyz',
-    title: 'Amafa.xyz'
+    site: 'https://https://stokfella.vercel.app/',
+    title: 'STOKVEL'
   }
 };
 
