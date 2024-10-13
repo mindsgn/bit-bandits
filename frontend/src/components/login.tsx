@@ -51,7 +51,7 @@ const Login: React.FC = () => {
               background="black"
               width="full"
               color="white"
-              title={'LOGIN'}
+              title={'LOG IN'}
               onClick={handleSubmit}
             />
           </VStack>

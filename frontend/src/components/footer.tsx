@@ -24,9 +24,9 @@ function Footer({}: FooterProp) {
         color="white"
         fontSize={21}
       >
-        &copy; {currentYear} amafa.xyz
+        &copy; {currentYear} STOKVEL (PTY) LTD
       </Text>
-      <Box flexDir={'row'} display={['none', 'none', 'none', 'flex']}>
+      <Box flexDir={'row'} display={['none', 'flex', 'flex', 'flex']}>
         <Text
           marginY={4}
           fontFamily="heavy"

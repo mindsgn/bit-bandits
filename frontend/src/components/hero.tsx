@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Box, Heading, Text, Container } from '@chakra-ui/react';
-import { PlatformButton } from './platformButton';
+import { Box, Heading, Text } from '@chakra-ui/react';
+import { Button } from './button';
+import { useRouter } from 'next/navigation'
 
 export type HeroProp = {};
 
 function Hero({}: HeroProp) {
+  const route = useRouter()
   return (
     <Box
       display={'flex'}
@@ -26,7 +28,7 @@ function Hero({}: HeroProp) {
         fontSize={[20, 40, 60, 60]}
         marginBottom={20}
       >
-        {`Your Everything App For Tracking And Managing Your Assets`.toUpperCase()}
+        {`Welcome to Stokvel, where seamless connections and smart investments meet.`.toUpperCase()}
       </Heading>
 
       <Text
@@ -40,6 +42,7 @@ function Hero({}: HeroProp) {
           'Amafa is a modern, asset management software that lets you create, manage, assign and overview your assets and equipment. From small office equipment to construction cranes.'
         }
       </Text>
+
       <Box
         display={'flex'}
         flexDir={['column', 'column', 'row', 'row']}
@@ -47,8 +50,17 @@ function Hero({}: HeroProp) {
         width="100%"
         alignItems={'center'}
       >
-        <PlatformButton image={'/ios.png'} />
-        <PlatformButton image={'/google.png'} />
+        <Button 
+          background='white'
+          color='black'
+          onClick={() => {
+            route.push("/login")
+          }}
+          title='GET STARTED'
+        />
+        {
+          //*<PlatformButton image={'/ios.png'} /> <PlatformButton image={'/google.png'} />*//
+        }
       </Box>
     </Box>
   );
