@@ -24,6 +24,7 @@ const useAuth = create(set => ({
   step: 0,
   getAuth: async () => {
     try {
+      /*
       const token = sessionStorage.getItem('token');
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
         method: 'GET',
@@ -34,17 +35,21 @@ const useAuth = create(set => ({
       });
 
       if (response.ok) {
-        set((state: AuthInterfce) => ({
-          step: state.step + 1,
-          auth: true
-        }));
+        
       }
+      */
+
+      set((state: AuthInterfce) => ({
+        step: state.step + 1,
+        auth: true
+      }));
     } catch (error) {
       console.log(error);
     }
   },
   login: async (email: string) => {
     try {
+      /*
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
         {
@@ -62,12 +67,12 @@ const useAuth = create(set => ({
         console.log(response);
         throw new Error('signin failed');
       }
+      */
 
       set((state: AuthInterfce) => ({
         step: state.step + 1,
         user: { ...state.user, email }
       }));
-      console.log(email);
       return true;
     } catch (error) {
       console.log(error);
@@ -76,6 +81,7 @@ const useAuth = create(set => ({
   },
   verify: async (email: string, code: string) => {
     try {
+      /*
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/auth/verify`,
         {
@@ -97,6 +103,9 @@ const useAuth = create(set => ({
       const data = await response.json();
       const { token } = data;
       sessionStorage.setItem('token', token);
+      */
+
+      const token: string = "DEV";
       set((state: AuthInterfce) => ({
         auth: true,
         token

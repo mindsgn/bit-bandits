@@ -3,7 +3,6 @@ import { Providers } from './providers';
 import '../src/global.module.css';
 import type { Metadata } from 'next';
 import { keywords } from '@/constants/keywords';
-import {APIProvider} from '@vis.gl/react-google-maps';
 
 export const metadata: Metadata = {
   title: 'STOKVEL',
