@@ -106,10 +106,10 @@ const useAuth = create(set => ({
       */
 
       const token: string = "DEV";
-      set((state: AuthInterfce) => ({
-        auth: true,
-        token
-      }));
+      // set((state: AuthInterfce) => ({
+      //  auth: true,
+      //  token
+     // }));
 
     } catch (error) {
       console.log(error);

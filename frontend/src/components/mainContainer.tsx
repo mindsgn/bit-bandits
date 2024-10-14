@@ -10,6 +10,19 @@ import { AssetDetails } from './AssetDetails';
 import { useAuth } from 'store/auth';
 import { useRouter } from 'next/navigation';
 
+const transactionHistory = [
+  {
+    title: "Withdraw:",
+    date: new Date(),
+    amount: "- R 600.00"
+  },
+  {
+    title: "Deposit: ",
+    date: new Date(),
+    amount: "+ R 900.00"
+  },
+]
+
 export type MainContainerProp = {};
 
 function MainContainer({}: MainContainerProp) {
@@ -50,29 +63,6 @@ function MainContainer({}: MainContainerProp) {
       flexDirection={'column'}
     >
       <Box
-        display={'flex'}
-        flexDir={'row'}
-        justifyContent={'flex-end'}
-        alignItems={'center'}
-        paddingX={4}
-        height={100}
-        width={'100%'}
-        background={'white'}
-        marginBottom={10}
-        borderRadius={10}
-        paddingY={2}
-      >
-        <Button
-          width={200}
-          title="Sign Out"
-          background="red"
-          color="white"
-          onClick={() => {
-            logout();
-          }}
-        />
-      </Box>
-      <Box
         display="flex"
         flexDir={['column', 'column', 'row', 'row']}
         cursor="pointer"
@@ -82,134 +72,67 @@ function MainContainer({}: MainContainerProp) {
           borderRadius={10}
           minW={200}
           h={150}
-          backgroundColor={'white'}
+          background='#1E1E1E'
         >
-          <Text fontSize={40} fontFamily={'heavy'}>
+          <Text 
+            fontSize={52} 
+            fontFamily={'heavy'} 
+            color='white'
+          >
             R {total}
           </Text>
-          <Text fontSize={20} fontFamily={'bold'} color={'#ddd'}>
-            Total Assets
+          <Text 
+            marginTop={-5} 
+            fontSize={20} 
+            fontFamily={'bold'} 
+            color={'#ddd'}
+          >
+            Total Value
           </Text>
         </Box>
       </Box>
-      <Box
-        display="flex"
-        flexDir={'column'}
-        cursor="pointer"
-        marginTop={10}
-        maxW={1000}
-      >
-        <Box
-          width={['100%']}
-          background="white"
-          display={'flex'}
-          flexDir={'row'}
-          justifyContent={'space-between'}
-          padding={2}
-          borderTopRadius={10}
-        >
-          <Heading color="black" fontFamily={'heavy'}>
-            {'ASSETS'}
-          </Heading>
-
-          <Button
-            onClick={onOpen}
-            title="Add Asset"
-            background="black"
-            color="white"
-          />
-        </Box>
-        <Box>
-          {assets.length === 0 ? (
-            <Box
-              width="100%"
-              height={500}
-              display={'flex'}
-              alignItems={'center'}
-              justifyContent={'center'}
-              flexDir={'column'}
-              background="white"
+      <Box>
+          <Box
+            marginY={4}>
+            <Text
+              fontSize={40} 
+              fontFamily={'heavy'} 
+              color="white"
             >
-              <Text fontFamily={'bold'} color={'black'}>
-                {'No assets'}
-              </Text>
-              <Text fontFamily={'bold'} color={'black'}>
-                {'What are you waiting for? Create your first asset now!'}
-              </Text>
-            </Box>
-          ) : (
-            assets.map((item: any, index: number) => {
-              const {
-                _id,
-                name,
-                tags,
-                receipt,
-                currency,
-                value,
-                images,
-                description,
-                category
-              } = item;
-              const { color, name: categoryName } = category;
-              const image = images[0];
-              return (
-                <Box
-                  display={'flex'}
-                  key={index}
-                  width="100%"
-                  padding={4}
-                  borderTopColor={'#ddd'}
-                  borderWidth={1}
-                  background={'white'}
-                  onClick={() => {
-                    setCurrent({
-                      _id,
-                      name,
-                      image,
-                      value,
-                      tags,
-                      receipt,
-                      currency,
-                      images
-                    });
-                    setAssetModal(true);
-                  }}
-                >
+              Transaction History
+            </Text>
+          </Box>
+          <Box>
+            {
+              transactionHistory.map((item: any) => {
+                return(
                   <Box
-                    height={20}
-                    width={20}
-                    background={`url('${process.env.NEXT_PUBLIC_API_URL}/uploads/${image}')`}
-                    borderRadius={10}
-                    backgroundPosition={'center'}
-                    backgroundSize={'cover'}
-                    padding={10}
-                    marginRight={4}
-                  />
-                  <Box>
-                    <Text fontSize={35} color="black" fontFamily={'heavy'}>
-                      {`${name}`.toLocaleUpperCase()}
+                    marginY={2}
+                    cursor='pointer'
+                    background='#1E1E1E'
+                    padding={2}
+                    width='100%'
+                  >
+                    <Text 
+                      fontSize={21}
+                      color='white'
+                      fontFamily={'heavy'}
+                    >
+                      {item.title}
                     </Text>
-                    <Text fontSize={20} color={`${color}`} fontFamily={'bold'}>
-                      {categoryName}
+                    <Text 
+                      fontSize={21} 
+                      fontFamily={'heavy'}
+                      color='white'
+                    >
+                      {item.amount}
                     </Text>
                   </Box>
-                </Box>
-              );
-            })
-          )}
+                )
+              })
+            }
+          </Box>
         </Box>
-      </Box>
-      <AssetModal isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
-      <AssetDetails
-        isOpen={assetModal}
-        setAssetModal={setAssetModal}
-        name={current.name}
-        image={current.image}
-        id={current._id}
-        currency={current.currency}
-        value={current.value}
-        description={current.description}
-      />
     </Box>
   );
 }

@@ -14,7 +14,7 @@ function Hero({}: HeroProp) {
       display={'flex'}
       flexDir={['column', 'column', 'column', 'column']}
       padding={5}
-      paddingTop={100}
+      paddingTop={[100, 100, 150,150]}
       height="90vh"
       flex={1}
       position={'relative'}
@@ -28,7 +28,7 @@ function Hero({}: HeroProp) {
         fontSize={[20, 40, 60, 60]}
         marginBottom={20}
       >
-        {`Welcome to Stokvel, where seamless connections and smart investments meet.`.toUpperCase()}
+        {`Welcome to Stockvel. A smart way to save and investing your money.`.toUpperCase()}
       </Heading>
 
       <Text
