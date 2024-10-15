@@ -33,6 +33,7 @@
     "@visx/mock-data": "^3.3.0",
     "@visx/scale": "^3.5.0",
     "@visx/shape": "^3.5.0",
+    "@visx/visx": "^3.11.0",
     "client-only": "^0.0.1",
     "cookies-next": "^4.2.1",
     "crypto": "^1.0.1",

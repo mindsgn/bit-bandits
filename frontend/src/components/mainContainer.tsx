@@ -2,24 +2,61 @@
 
 import React, { useEffect, useState } from 'react';
 import { Box, Heading, Text } from '@chakra-ui/react';
-import { useAssets } from 'store/assets';
+import { useApp } from 'store/app';
 import { Button } from './button';
 import { useDisclosure } from '@chakra-ui/react';
 import AssetModal from './AddAssetModal';
 import { AssetDetails } from './AssetDetails';
 import { useAuth } from 'store/auth';
 import { useRouter } from 'next/navigation';
+import TransactionCard from './transaction';
+import BarStack from '@/components/barStack';
 
 const transactionHistory = [
   {
-    title: "Withdraw:",
+    title: "Withdraw",
     date: new Date(),
-    amount: "- R 600.00"
+    amount: "- R 600.00",
+    type: "Withdraw",
+    description: ""
   },
   {
-    title: "Deposit: ",
+    title: "Deposit",
     date: new Date(),
-    amount: "+ R 900.00"
+    amount: "+ R 900.00",
+    type: "deposit",
+    description: ""
+  },
+  {
+    title: "Deposit",
+    date: new Date(),
+    amount: "+ R 900.00",
+    type: "deposit",
+    description: ""
+  },
+]
+
+const pools = [
+  {
+    title: "Withdraw",
+    date: new Date(),
+    amount: "- R 600.00",
+    type: "Withdraw",
+    description: ""
+  },
+  {
+    title: "Deposit",
+    date: new Date(),
+    amount: "+ R 900.00",
+    type: "deposit",
+    description: ""
+  },
+  {
+    title: "Deposit",
+    date: new Date(),
+    amount: "+ R 900.00",
+    type: "deposit",
+    description: ""
   },
 ]
 
@@ -35,9 +72,9 @@ function MainContainer({}: MainContainerProp) {
   });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const authState = useAuth();
-  const state = useAssets();
+  const state = useApp();
   //@ts-expect-error
-  const { getAssets, assets, total } = state;
+  const { getTransactions, transaction,  } = state;
   //@ts-expect-error
   const { logout, auth } = authState;
 
@@ -49,7 +86,7 @@ function MainContainer({}: MainContainerProp) {
   }, [auth, router]);
 
   useEffect(() => {
-    getAssets();
+    
   }, []);
 
   return (
@@ -71,9 +108,9 @@ function MainContainer({}: MainContainerProp) {
           padding={2}
           borderRadius={10}
           minW={200}
-          h={150}
           background='#1E1E1E'
         >
+          
           <Text 
             fontSize={52} 
             fontFamily={'heavy'} 
@@ -89,6 +126,9 @@ function MainContainer({}: MainContainerProp) {
           >
             Total Value
           </Text>
+          <BarStack
+            width={500}
+            height={400}/>
         </Box>
       </Box>
       <Box>
@@ -99,35 +139,44 @@ function MainContainer({}: MainContainerProp) {
               fontFamily={'heavy'} 
               color="white"
             >
-              Transaction History
+              Stokvels
             </Text>
           </Box>
-          <Box>
+          <Box
+            display={'flex'}
+            width={["100%", '100%', 750 ,750]}>
             {
-              transactionHistory.map((item: any) => {
+              pools.map((item: any) => {
+                const { title, amount, type} = item
                 return(
-                  <Box
-                    marginY={2}
-                    cursor='pointer'
-                    background='#1E1E1E'
-                    padding={2}
-                    width='100%'
-                  >
-                    <Text 
-                      fontSize={21}
-                      color='white'
-                      fontFamily={'heavy'}
-                    >
-                      {item.title}
-                    </Text>
-                    <Text 
-                      fontSize={21} 
-                      fontFamily={'heavy'}
-                      color='white'
-                    >
-                      {item.amount}
-                    </Text>
-                  </Box>
+                 <Box cursor={'pointer'} width={200} height={60} background="#1E1E1E" borderRadius={10} marginRight={4}/>
+                )
+              })
+            }
+          </Box>
+      </Box>
+      <Box>
+          <Box
+            marginY={4}>
+            <Text
+              fontSize={40} 
+              fontFamily={'heavy'} 
+              color="white"
+            >
+              Transactions
+            </Text>
+          </Box>
+          <Box
+            width={["100%", '100%', 750 ,750]}>
+            {
+              transaction.map((item: any) => {
+                const { title, amount, type} = item
+                return(
+                  <TransactionCard
+                    type={type}
+                    title={title}
+                    amount={amount}
+                  />
                 )
               })
             }
