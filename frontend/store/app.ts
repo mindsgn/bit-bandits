@@ -10,6 +10,7 @@ export interface AppInterfce {
 const useApp = create(set => ({
   transactions: [],
   pools: [],
+  total: 0.00,
   getTransactions: async () => {
     try {
       const token: string | null = sessionStorage.getItem('token');

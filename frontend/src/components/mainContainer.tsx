@@ -12,54 +12,6 @@ import { useRouter } from 'next/navigation';
 import TransactionCard from './transaction';
 import BarStack from '@/components/barStack';
 
-const transactionHistory = [
-  {
-    title: "Withdraw",
-    date: new Date(),
-    amount: "- R 600.00",
-    type: "Withdraw",
-    description: ""
-  },
-  {
-    title: "Deposit",
-    date: new Date(),
-    amount: "+ R 900.00",
-    type: "deposit",
-    description: ""
-  },
-  {
-    title: "Deposit",
-    date: new Date(),
-    amount: "+ R 900.00",
-    type: "deposit",
-    description: ""
-  },
-]
-
-const pools = [
-  {
-    title: "Withdraw",
-    date: new Date(),
-    amount: "- R 600.00",
-    type: "Withdraw",
-    description: ""
-  },
-  {
-    title: "Deposit",
-    date: new Date(),
-    amount: "+ R 900.00",
-    type: "deposit",
-    description: ""
-  },
-  {
-    title: "Deposit",
-    date: new Date(),
-    amount: "+ R 900.00",
-    type: "deposit",
-    description: ""
-  },
-]
-
 export type MainContainerProp = {};
 
 function MainContainer({}: MainContainerProp) {
@@ -74,11 +26,10 @@ function MainContainer({}: MainContainerProp) {
   const authState = useAuth();
   const state = useApp();
   //@ts-expect-error
-  const { getTransactions, transaction,  } = state;
+  const { getTransactions, transactions, total, pools } = state;
   //@ts-expect-error
   const { logout, auth } = authState;
-
-
+  
   useEffect(() => {
     if (!auth) {
       router.push('/login');
@@ -147,7 +98,6 @@ function MainContainer({}: MainContainerProp) {
             width={["100%", '100%', 750 ,750]}>
             {
               pools.map((item: any) => {
-                const { title, amount, type} = item
                 return(
                  <Box cursor={'pointer'} width={200} height={60} background="#1E1E1E" borderRadius={10} marginRight={4}/>
                 )
@@ -169,7 +119,7 @@ function MainContainer({}: MainContainerProp) {
           <Box
             width={["100%", '100%', 750 ,750]}>
             {
-              transaction.map((item: any) => {
+              transactions.map((item: any) => {
                 const { title, amount, type} = item
                 return(
                   <TransactionCard
