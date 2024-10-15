@@ -3,6 +3,7 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/react';
 
+//@ts-expect-error
 const TransactionCard: React.FC = ({
   title,
   amount,
@@ -11,8 +12,8 @@ const TransactionCard: React.FC = ({
 }: {
   title: string,
   amount: string
-  type: "deposit" | "withdraw",
-  status: "Failed" | "Pending" | "Successful"
+  type?: string,
+  status?: string
 }) => {
   return (
     <Box
@@ -24,7 +25,6 @@ const TransactionCard: React.FC = ({
     background='#1E1E1E'
     padding={2}
     width='100%'
-    cursor='pointer'
     borderRadius={10}
   >
     <Box>

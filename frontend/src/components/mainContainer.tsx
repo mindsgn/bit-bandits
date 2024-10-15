@@ -5,7 +5,6 @@ import { Box, Heading, Text } from '@chakra-ui/react';
 import { useApp } from 'store/app';
 import { Button } from './button';
 import { useDisclosure } from '@chakra-ui/react';
-import AssetModal from './AddAssetModal';
 import { AssetDetails } from './AssetDetails';
 import { useAuth } from 'store/auth';
 import { useRouter } from 'next/navigation';
@@ -29,7 +28,7 @@ function MainContainer({}: MainContainerProp) {
   const { getTransactions, transactions, total, pools } = state;
   //@ts-expect-error
   const { logout, auth } = authState;
-  
+
   useEffect(() => {
     if (!auth) {
       router.push('/login');
@@ -77,9 +76,13 @@ function MainContainer({}: MainContainerProp) {
           >
             Total Value
           </Text>
-          <BarStack
-            width={500}
-            height={400}/>
+          {  
+            //@ts-expect-error
+          
+            <BarStack
+              width={500}
+              height={400}/>
+          }
         </Box>
       </Box>
       <Box>
@@ -123,6 +126,7 @@ function MainContainer({}: MainContainerProp) {
                 const { title, amount, type} = item
                 return(
                   <TransactionCard
+                    //@ts-expect-error
                     type={type}
                     title={title}
                     amount={amount}

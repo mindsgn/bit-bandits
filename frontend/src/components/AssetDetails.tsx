@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { Button } from './button';
 import QRCode from 'react-qr-code';
-import { useAssets } from 'store/assets';
+import { useApp } from 'store/app';
 import {APIProvider, Map} from '@vis.gl/react-google-maps';
 
 export type AssetDetailsProps = {
@@ -37,7 +37,7 @@ function AssetDetails({
   value,
   currency
 }: AssetDetailsProps) {
-  const state = useAssets();
+  const state = useApp();
   //@ts-expect-error
   const { removeAsset, getAssets } = state;
 
@@ -151,9 +151,9 @@ function AssetDetails({
           color="white"
           background="red"
           onClick={() => {
-            removeAsset(id);
-            setAssetModal(false);
-            getAssets();
+            // removeAsset(id);
+            // setAssetModal(false);
+            // getAssets();
           }}
           title="Remove Asset"
         />

@@ -146,17 +146,6 @@ export default withTooltip<BarStackHorizontalProps, TooltipData>(
             </BarStackHorizontal>
           </Group>
         </svg>
-        {tooltipOpen && tooltipData && (
-          <Tooltip top={tooltipTop} left={tooltipLeft} style={tooltipStyles}>
-            <div style={{ color: colorScale(tooltipData.key) }}>
-              <strong>{tooltipData.key}</strong>
-            </div>
-            <div>{tooltipData.bar.data[tooltipData.key]}℉</div>
-            <div>
-              <small>{formatDate(getDate(tooltipData.bar.data))}</small>
-            </div>
-          </Tooltip>
-        )}
       </div>
     );
   },
